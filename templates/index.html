@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-53LFJFBT');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Dabzelos</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <link href="/img/icon.jpg" rel="icon">
+  <link href="/img/icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.g.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53LFJFBT" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="/img/logo.png" alt=""> -->
+      <h1 class="sitename">Данила Руднев-Степанян</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="https://vk.com/darudnev" class="vkontakte"><i class="bi bi-bootstrap-fill"></i></a>
+      <a href="https://github.com/Dabzelos" class="github"><i class="bi bi-github"></i></a>
+      <a href="https://www.instagram.com/dabzelosiqqq/" class="instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Главная</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i> Обо мне</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Резюме</a></li>
+        <li><a href="#Projects"><i class="bi bi-hdd-stack navicon"></i> Мои проекты</a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Фото</a></li>
+        <li><a href="#testimonials"><i class="bi bi-people navicon"></i> Друзья</a></li>
+      </ul>
+      <div id="auth-container">
+        <div id="auth-widget"></div>
+      </div>
+      <div id="user-info" style="display: none;">
+        Добро пожаловать, <span id="user-name"></span>!
+      </div>
+      <div>
+        {% if not reg %}
+        <div>
+          <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
+          <script type="text/javascript">
+            if ('VKIDSDK' in window) {
+              const VKID = window.VKIDSDK;
+
+              VKID.Config.init({
+                app: 52878451,
+                redirectUrl: 'https://dabzelos.ru/',
+                responseMode: VKID.ConfigResponseMode.Callback,
+                source: VKID.ConfigSource.LOWCODE,
+                scope: '',
+              });
+
+              const oneTap = new VKID.OneTap();
+
+              oneTap.render({
+                container: document.currentScript.parentElement,
+                scheme: 'dark',
+                oauthList: [
+                  'ok_ru'
+                ],
+                fastAuthEnabled: false,
+                showAlternativeLogin: true
+              })
+                .on(VKID.WidgetEvents.ERROR, vkidOnError)
+                .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, function (payload) {
+                  const code = payload.code;
+                  const deviceId = payload.device_id;
+
+                  VKID.Auth.exchangeCode(code, deviceId)
+                    .then(vkidOnSuccess)
+                    .catch(vkidOnError);
+                });
+
+              function vkidOnSuccess(data) {
+                console.log(data)
+                VKID.Auth.userInfo(data.access_token)
+                  .then(data => {
+                    console.log(data)
+                    let user_obj = {
+                      status: 'ok',
+                      name: `${data.user.first_name} ${data.user.last_name}`,
+                      username: ''
+                    }
+                    localStorage.setItem('user', JSON.stringify(user_obj))
+                    fetch(`https://dabzelos.ru/vk_auth`, {
+                      method: 'POST',
+                      body: JSON.stringify(user_obj),
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }).then(response => response.json())
+                      .then(data => {
+                        console.log(data)
+                        window.location.reload()
+                      })
+
+                  })
+              }
+
+              function vkidOnError(error) {
+                console.log(error)
+              }
+            }
+
+          </script>
+        </div>{% else %}
+        <div>
+          <h2>Привет, {{ name }}!</h2>
+          <script
+            type="text/javascript">(function () { var script = document.createElement("script"); script.type = "text/javascript"; script.async = true; script.src = "//telegram.im/widget-button/index.php?id=@dadfadf"; document.getElementsByTagName("head")[0].appendChild(script); })();</script>
+          <a href="https://t.me/+bJ1MPsiCEWxiZjli" target="_blank"
+            class="telegramim_button telegramim_shadow telegramim_pulse"
+            style="font-size:18px;width:236px;background:#27A5E7;box-shadow:1px 1px 5px #27A5E7;color:#FFFFFF;border-radius:100px;"
+            title=""><i></i> Мой телеграмм канал</a>
+
+        </div>
+        {% endif %}
+
+      </div>
+    </nav>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <h2>Данила Руднев-Степанян</h2>
+        <p><span class="typed" data-typed-items="Гений, Миллиардер, Плейбой, Филантроп">Гений</span><span
+            class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span
+            class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+        <p></p>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Обо мне</h2>
+        <p>Только сегодня. Только сейчас.
+          Вы на сайте человека, при жизни ставшего легендой.
+          Народный артист Советского Союза, России и даже Чечено-Ингушетии, лауреат государственной премии СССР
+          и премии
+          ленинского комсомола, человек признанный, известный, авторитетный, мэтр, но потом подумав я всё-таки решил
+          начать иначе,
+          сегодня вы на сайте человека который творил эту эпоху, и который сам стал эпохой, человека которого я очень
+          уважаю и
+          люблю - Меня.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            <img src="/img/my-profile-img.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 content">
+            <h2>Software Engineer &amp; Developer.</h2>
+            <p class="fst-italic py-3">
+              Жизнь как детская рубашка.
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>День рождения:</strong> <span>6 Maя 2004</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Telegram:</strong> <span>@Dabzelos</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Город:</strong> <span>Санкт-Петербург, Россия</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Возраст:</strong> <span>21</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Образование:</strong> <span>Магистр Ордена
+                      Мерлина</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>rudnevda@yandex.ru</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="py-3">
+              В настоящее время обучаюсь на втором курсе математико-механического факультета СПБГУ, на программе
+              Программная инженерия. В прошлом закончил два курса по программе "Прикладная математика и
+              информатика".<br>
+              Так же прохожу обучение в компании Т-Банк по направлению "Backend разработка на Golang".
+              Основными приоритетами в своей жизни всегда видел образование и развитие, именно это и ведет меня по
+              жизни, и помогает мне быть там где я сейчас нахожусь.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Интересы</h2>
+        <p>Мои професиональные интересы как разработчика:</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row skills-content skills-animation">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>Golang</span> <i class="val">100%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Backend</span> <i class="val">100%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Java</span> <i class="val">75%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>Highload Architecture</span> <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Machine Learning</span> <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Карьера</h2>
+        <p>Мои актуальные достижения по расположенные относительно временной оси.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Образование</h3>
+            <div class="resume-item">
+              <h4>Любимый дом</h4>
+              <h5>2004 - Настоящее время</h5>
+              <p><em></em></p>
+              <p>Лучший сын, а так же лучший брат, лучший внук и лучший племянник.</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Аничков Лицей</h4>
+              <h5>2020 - 2022</h5>
+              <p><em></em></p>
+              <p>В 9 классе перевелся в известный в Питере Аничков лицей, где провел свои последние школьные годы.</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Бакалавриат по Прикладной Матемаке и Информатике</h4>
+              <h5>2022 - 2024</h5>
+              <p><em>Санкт-Петербургский Государственный университет</em></p>
+              <p>Два года посвятил изучению математики, планировал заниматься машинным обучением, но понял что больше
+                тянет к разработке.</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Бакалавриат по Программной инженерии</h4>
+              <h5>2024 - Настоящее время</h5>
+              <p><em>Санкт-Петербургский Государственный университет</em></p>
+              <p>На данный момент продолжаю получение высшего образования по этой программе.</p>
+            </div><!-- Edn Resume Item -->
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Опыт и практика</h3>
+            <div class="resume-item">
+              <h4>Обучение Backend разработке на Golang</h4>
+              <h5>2024 - Настоящее время</h5>
+              <p><em>Т-Банк </em></p>
+              <ul>
+                <li>Изучаю архитектуру микросервисных и высоконагрузных приложений.</li>
+                <li>Основной язык - Golang, так как он идеально подходит для поставленных задач, а так же имеет
+                  интересное устройство многопоточной работы. </li>
+                <li>По окончании планирую дальше развиваться в этой области.</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Linux Kernel development</h4>
+              <h5>2024 - Настоящее время</h5>
+              <p><em>Санкт-Петербургский государственной университет</em></p>
+              <ul>
+                <li>Изучаю разработку модулей для ядра линукс.</li>
+                <li>Занимаюсь реинжиниргом старых модулей ядра.</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Portfolio Section -->
+    <section id="Projects" class="portfolio section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Проекты</h2>
+        <p>Здесь представленны ссылки на мои проекты, которые я имею право публиковать.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="portfolio-content h-100">
+              <img src="/img/portfolio/NGINX.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>LogAnalyzer</h4>
+                <p>Утилита для анализа логов и составления отчета о работе NGINX серверов</p>
+                <a href="/img/portfolio/NGINX.png" title="App 1" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"></i></a>
+                <a href="https://github.com/Dabzelos/LogAnalyzer" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!--  -->
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="portfolio-content h-100">
+              <img src="/img/portfolio/GraphProj.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>GraphApp</h4>
+                <p>Простое приложение для работы с графами и их анализа.</p>
+                <a href="/img/portfolio/GraphProj.png" title="App 1" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"></i></a>
+                <a href="https://github.com/spbu-coding-2023/graphs-graph-10" title="More Details"
+                  class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!--  -->
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="portfolio-content h-100">
+              <img src="/img/portfolio/kern_Mod.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Kernel Module</h4>
+                <p>Модуль для ядра линукс, создающий лог-структурированное блочное устройство.</p>
+                <a href="/img/portfolio/kern_Mod.png" title="App 1" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"></i></a>
+                <a href="https://github.com/Dabzelos/blkdev_module" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!--  -->
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="portfolio-content h-100">
+              <img src="/img/portfolio/FractalFlame.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>FractalFlame</h4>
+                <p>Оптимизированный генератор изображений фрактального пламени.</p>
+                <a href="/img/portfolio/FractalFlame.png" title="App 1" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"></i></a>
+                <a href="https://github.com/Dabzelos/FractalFlame.git" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!--  -->
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="portfolio-content h-100">
+              <img src="/img/portfolio/camel.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>OCaml interpreter</h4>
+                <p>Разработка интепретатора на языке OCaml в качестве проекта по курсу функционального программирования.
+                </p>
+                <a href="/img/portfolio/camel.png" title="App 1" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"></i></a>
+                <a href="https://github.com/Kakadu/fp2024" title="More Details" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!--  -->
+        </div><!-- End Portfolio Container -->
+
+      </div>
+    </section><!-- /Portfolio Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Фото</h2>
+        <p>Мои фотографии.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-live">
+              <div class="portfolio-content h-100">
+                <img src="/img/portfolio/spaghetti.png" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Хватило на макароны на первом курсе.</p>
+                  <a data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-live">
+              <div class="portfolio-content h-100">
+                <img src="/img/portfolio/zaliv.png" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Ходили после первого курса гулять всю ночь на заливе.</p>
+                  <a data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-travel">
+              <div class="portfolio-content h-100">
+                <img src="/img/bigBen.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Был в Лондоне, во время поездки по обмену.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-travel">
+              <div class="portfolio-content h-100">
+                <img src="/img/sunrise.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Видел рассвет над Памуккале.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-live">
+              <div class="portfolio-content h-100">
+                <img src="/img/peterghof.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Петергофские фонтаны летом.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-sport">
+              <div class="portfolio-content h-100">
+                <img src="/img/slon.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>С детства Родители прививали мне любовь к спорту.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-sport">
+              <div class="portfolio-content h-100">
+                <img src="/img/batat.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Мои руки в сравнении с картофелем после курса анаболических стероидов</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-sport">
+              <div class="portfolio-content h-100">
+                <img src="/img/dropout.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Нас с мишей не смогли отчислить из лицея - пришлось заканчивать.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-sport">
+              <div class="portfolio-content h-100">
+                <img src="/img/carrot.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Все остальное после курса анаболических стероидов</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-travel">
+              <div class="portfolio-content h-100">
+                <img src="/img/church.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>У храма Христа Спасителя.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-travel">
+              <div class="portfolio-content h-100">
+                <img src="/img/berserk.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>C главным философским произведением за всю историю человечесвта.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-travel">
+              <div class="portfolio-content h-100">
+                <img src="/img/fork.jpg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <p>Был выбор - выбрал вилку.</p>
+                  <a title="App 1" data-gallery="portfolio-gallery-app"></i></a>
+                </div>
+              </div>
+            </div><!--  -->
+
+          </div><!-- End Portfolio Container -->
+
+
+        </div>
+
+      </div>
+
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Навыки</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="bi bi-hdd-stack"></i></div>
+            <div>
+              <h4 class="title">Golang</a></h4>
+              <p class="description">Около года занимаюсь разработкой на Golang</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                <path
+                  d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+              </svg></div>
+            <div>
+              <h4 class="title">Английский</a></h4>
+              <p class="description">Свободно говорю на английском, а так же читаю техническую литературу.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+            <div>
+              <h4 class="title">Математика</a></h4>
+              <p class="description">Большие знания в математическом анализе, алгебре, алгоритмах и сруктурах данных.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
+                <path
+                  d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z" />
+              </svg></div>
+            <div>
+              <h4 class="title">СУБД</a></h4>
+              <p class="description">Умею работать с системами управления баз данных, в частности PostgreSQL.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+              </svg></div>
+            <div>
+              <h4 class="title">VCS</a></h4>
+              <p class="description">Умею работать с такими системами контроля версий как git, а так же с GitHub и
+                Gitlab.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Мои друзья обо мне</h2>
+        <p>Мои близкие друзья и соратники и их слова обо мне.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 1
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Я тусуюсь там где грабят там где куча дряни, парень хочет с нами, прфффуррррр....</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Михаил Михальков</h3>
+                <h4>МегаРыцарь &amp; Одноклассник</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Этот парень
+                    - Бэтмэн</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Григоий Аксенов</h3>
+                <h4>Друг детсва</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Dabzelos</strong> <span>All Rights Reserved</span>
+        </p>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+  <script src="/vendor/aos/aos.js"></script>
+  <script src="/vendor/typed.js/typed.umd.js"></script>
+  <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/js/main.js"></script>
+
+</body>
+
+</html>
